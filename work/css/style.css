@@ -1,0 +1,60 @@
+body {
+	font-family: Tahoma,Arial,Verdana;
+	font-size: 12px;
+	color: black;
+	margin:0; 
+	padding:0;
+}
+.datagrid-htable{margin:0 auto;}
+a:link {color: #84c4e2;}
+a:visited {color:#84c4e2;}
+a:hover {color: #cd82ad;}
+a:active {color: #84c4e2;}
+#chartdiv{
+	width:99%;
+	height: 500px;
+	border:1px solid #aaa;
+	margin:0.5%;
+}
+td{
+	text-align:center;
+}
+.piediv{
+	width:32%;
+	height:350px;
+	float:left;
+	display:block;
+	border:1px solid #aaa;
+	margin:0.5%;
+}
+#detailSystem p{
+	display:inline-block;
+	padding:10px 10px;
+	font-size: 16px;
+	color:blue;
+}
+#detailSystem p:hover{
+	cursor:pointer;
+}
+.detsys{
+	background-color:#aaa;
+}
+#system_date span:hover{
+	color:blue;
+	cursor:pointer;
+}
+#nextPage:hover{
+	color:blue;
+	cursor:pointer;
+}
+#lastPage:hover{
+	color:blue;
+	cursor:pointer;
+}
+dt{padding:10px;}
+i{ font-style:normal;}
+#detail{	position:fixed;width:700px;height:400px;border:1px solid #ccc;background:#efefef; display:none;}
+#detail .tit{ background:#ddd; display:block; height:35px; cursor:move;}
+#detail .det{ background:#ddd; display:block; height:330px;width:100%;cursor:move;}
+#detail .tab{ background:#ddd; display:block; height:35px; text-align:center;}
+#detail .tit i{ float:right; line-height:33px; padding:0 8px;cursor:default;}

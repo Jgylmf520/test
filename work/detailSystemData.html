@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>XXX系统</title>
+	<link rel="stylesheet" href="css/style.css" type="text/css"><!-- 样式表 -->
+	<script src="data/test.js" type="text/javascript"></script><!-- 引入模拟数据 -->
+	<script src="js/amcharts.js" type="text/javascript"></script><!-- 柱状图插件 -->
+	<script src="js/serial.js" type="text/javascript"></script><!-- 柱状图插件 -->
+	<script src="js/jquery-1.7.2.min.js" type="text/javascript"></script>
+	<script src="js/bao.js" type="text/javascript"></script><!-- 饼状图插件 -->
+	<script src="js/table.js" type="text/javascript"></script><!-- 表格 -->
+	<script src="js/column.js" type="text/javascript"></script><!-- 柱状图 -->
+	<script src="js/pie.js" type="text/javascript"></script>	<!-- 柱状图 -->
+	<script src="js/tc.all.js" type="text/javascript"></script><!-- 浮动窗口插件 -->
+	<script src="js/detTable.js" type="text/javascript"></script><!-- 浮动窗口数据 -->
+	<script>
+	var chartData=chartData1;
+	var sum1=0,sum2=0,sum3=0;
+	for(var i=0;i<chartData.length;i++){
+		sum1+=chartData[i].regular;
+		sum2+=chartData[i].irregular;
+		sum3+=chartData[i].warning;
+	}
+	</script>
+	<script>
+		$(function(){
+			var data={"systems":["环境监控系统","设备监控系统"]};
+			var systems=data.systems;
+			for(var i=0;i<systems.length;i++){
+				var $span=
+				$("<p>"+systems[i]+"</p>");
+				$("#detailSystem").append($span);	
+			}
+		});
+	</script>
+</head>
+<body>
+	<!--<div id="detailSystem"></div>-->
+	<div class="piediv">
+		<h1 style="text-align:center;margin:0 auto">系统状态图</h1>
+		<div id="div1" style="width: 500px;height:300px;margin:0 auto"><!-- 饼状图的位置-->
+		</div>
+    </div>
+	<div class="piediv" >
+		<h1 style="text-align:center;margin:0 auto">异常类型图</h1>
+		<div id="div2" style="width: 500px;height:300px;margin:0 auto">
+		</div>
+    </div>
+	<div class="piediv" >
+		<h1 style="text-align:center;margin:0 auto">报警类型图</h1>
+		<div id="div3" style="width: 500px;height:300px;margin:0 auto">
+		</div>
+    </div>
+	<div id="chartdiv"></div><!-- 柱状图位置，在column.js中修改颜色 -->
+	<table class="datagrid-htable" style="width:95%;clear:right;" cellspacing="0" cellpadding="1" border="1">
+		<thead>
+			<tr class="datagrid-header-row">
+				<th>
+					设备名称
+				</th>
+				<th>
+					正常数量
+				</th>
+				<th>
+					异常数量
+				</th>
+				<th>
+					报警数量
+				</th>
+				<th>
+					地图显示
+				</th>
+			</tr>
+		</thead>
+		<tbody id="system_date">
+		<!-- 动态加载表格位置 -->
+		</tbody>
+	</table>
+	<div id="detail">
+		<div class="tit"><i class="close">关闭</i></div>
+		<div class="det">
+			<div class="wen" id="d1" style="margin:0px 10px;">
+				<table border="1" cellpadding="1" cellspacing="0">
+				<thead>
+					<tr height="40">
+						<td width="80">设备编号</td>
+						<td width="80">设备名称</td>
+						<td width="80">设备状态</td>
+						<td width="80">电压(V)</td>
+						<td width="80">电流(A)</td>
+						<td width="80">安装位置</td>
+						<td width="80">地图定位</td>
+						<td width="80">历史记录</td>
+					</tr>
+				</thead>
+				<tbody id="tab1">	
+				</tbody>	
+				</table>
+			</div>
+		</div>
+		<div class="tab">
+			<span id="lastPage">上一页</span>
+			<span id="pageNow"></span>
+			<span>/</span>
+			<span id="pageAll"></span>
+			<span id="nextPage">下一页</span>
+		</div>
+	</div>
+	<script>
+		$(function(){
+			$("#detailSystem p").eq(0).addClass("detsys");//打开页面默认显示样式（选中）
+		});
+		$(function(){		//点击选中效果开头样式
+			$("#detailSystem p").click(function(){
+				console.log($(this).html());
+				$("#detailSystem p").removeClass("detsys");
+				$(this).addClass("detsys");
+				if($("#detailSystem p").eq(0).hasClass("detsys")){
+					console.log(1);
+					chartData=chartData1;
+				}else{
+					console.log(2);
+					chartData=chartData2;
+				}
+			});
+		});
+	</script>
+</body>
+</html>

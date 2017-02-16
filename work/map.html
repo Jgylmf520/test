@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	<title>地图展示</title>
+	<style type="text/css">
+	body,html{width: 100%;height: 100%;margin:0;font-family:"微软雅黑";}
+	#allmap{width:80%;height:100%;float:left;}
+	#search{width:20%;height:100%;float:left;background:#f0f6e4;}
+	</style>
+	<link rel="stylesheet" href="baiduAPI/SearchInfoWindow.css" />
+	<link rel="stylesheet" href="zTree/css/demo.css" type="text/css">
+	<link rel="stylesheet" href="zTree/css/zTreeStyle/zTreeStyle.css" type="text/css">
+	<!--<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=H4NTSlpqD0V3jc3AMFtXUlra7IzakOWw"></script>-->
+	<script src="js/map.js"></script>
+	<script src="baiduAPI/jquery_1.9.0.js"></script>
+	<script src="baiduAPI/SearchInfoWindow.js"></script>
+	<script type="text/javascript" src="zTree/js/jquery-1.4.4.min.js"></script>
+	<script type="text/javascript" src="zTree/js/jquery.ztree.core.js"></script>
+	<script type="text/javascript" src="zTree/js/jquery.ztree.excheck.js"></script>
+	<script>
+		//显示不同状态的点
+		$(function(){
+			
+			$("#state input").click(function(){//只显示异常的点
+				var id=$(this).attr("id");
+				if($("#"+id).is(":checked")){
+					var allOverlay = map.getOverlays();
+					for(var i=0;i<allOverlay.length;i++){
+						
+						if(allOverlay[i].state==id){
+							allOverlay[i].show();
+							addClickHandler(allOverlay[i]);
+						}else{
+							allOverlay[i].hide();
+						}
+					}
+				}else{
+					
+				}	
+			});
+		});
+	</script>
+	<script type="text/javascript" src="data/test.js"></script>
+	<SCRIPT type="text/javascript">
+
+        var setting = {
+            check: {
+                enable: true,
+                nocheckInherit: false
+            },
+            data: {
+                simpleData: {
+                    enable: true
+                }
+            }
+        };
+
+		$(function(){
+			$.fn.zTree.init($("#treeDemo"), setting, zNodes);
+		});
+
+	</SCRIPT>
+</head>
+<body>
+	<div id="allmap"></div>
+	<div id="search">
+		<div style="width:100%;height:10%;text-align:center;">
+			<input type="text" style="margin-top:5px;" id="searchstr"/>
+			<input type="button"  style="margin-top:5px;" value="搜索" onclick="javascript:findIt();"/>
+		</div>
+		<!--
+		<div id="state" style="width:100%;height:5%;text-align:center;">
+			<input type="radio" name="state" id="zc"/>正常
+			<input type="radio" name="state" id="yc"/>异常
+			<input type="radio" name="state" id="bj"/>报警
+		</div>
+		-->
+		<div class="content_wrap"><!-- 树状图部分 -->
+			<ul id="treeDemo" class="ztree"></ul>
+		</div>
+	</div>
+	<script src="js/showMap.js" charset="utf-8"></script>
+
+	<script type="text/javascript">
+	function findIt(){
+		//搜索功能
+		var txt=$("#searchstr").val();//获取输入框内容
+		if(txt!=""&&txt!=null){
+			var nodeName=$(".node_name").text();
+			$(".node_name").each(
+				function(){
+					var input =$(this);
+					input[0].style.color="black";
+					//console.log(input.text());//所有span中值
+					if(input.text().indexOf(txt)>=0){
+						input[0].style.color="red";
+					}else{
+						
+					}
+				}
+			);
+		}
+		
+		
+		
+	}
+</script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<body>
+    <div dataid="1">a</div>
+    <div dataid="2">b</div>
+    <div dataid="3">c</div>
+    <div dataid="4">d</div>
+</body>
+<script type="text/javascript" src="./jquery.js"></script>
+<script type="text/javascript">
+$(function() {  
+	$("div").click(function(){  
+		//|获取当前对象的 data id 属性值  
+		alert($(this).attr("dataid"));  
+	});  
+});/*
+$(function(){
+    $("div").click(function(){
+        var str = $(this).attr("id");
+        alert(str);
+        });
+    });*/
+</script>
